@@ -1,0 +1,1011 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Public Open ARI API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;javascript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>Welcome to the Booking Factory Public Open ARO API! You can use our API to write your own booking widgets.</p>
+
+<p>Our API based at simple HTTP requests, as result you can use any language! You can view code examples in the dark area to the right, we provide examples at JavaScript, but you can use CURL or other libraries.</p>
+
+<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+
+<h1 id="api-endpoint">API Endpoint</h1>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">API_ENDPOINT</span> <span class="o">=</span> <span class="s1">'https://app.thebookingfactory.com/api/public/v1/'</span><span class="p">;</span>
+</code></pre>
+
+<p>Our API endpoint located at https://app.thebookingfactory.com/api/public/v1/</p>
+
+<h1 id="authentication">Authentication</h1>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">API_KEY</span> <span class="o">=</span> <span class="s1">'meowmeowmeow'</span><span class="p">;</span>
+</code></pre>
+
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+</blockquote>
+
+<p>Our engine uses API keys to allow access to the API. You can register a new API key at your <a href="https://app.thebookingfactory.com/client/#/settings/other/api_key">hotel settings page</a>.</p>
+
+<p>We expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+
+<p><code class="prettyprint">Token: meowmeowmeow</code></p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeow</code> with your personal API key.
+</aside>
+
+<h1 id="methods">Methods</h1>
+
+<h2 id="get-availability">Get Availability</h2>
+<pre class="highlight javascript"><code><span class="nx">fetch</span><span class="p">(</span>
+    <span class="nx">API_ENDPOINT</span> <span class="o">+</span> <span class="s1">'availability?date_from=2017-01-01&amp;date_to=2017-01-02&amp;fields='</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="na">method</span><span class="p">:</span>  <span class="s1">'GET'</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="s1">'Token'</span><span class="p">:</span> <span class="nx">API_KEY</span> <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">raw_response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">raw_response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"date_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-01"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"date_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-02"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"availability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"STDB"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-01-01"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"2017-01-02"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"EXDB"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-01-01"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"2017-01-02"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"ext1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-01-01"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"2017-01-02"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"ETTW"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-01-01"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"2017-01-02"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"CSDB"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-01-01"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"2017-01-02"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"SERV"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-01-01"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"2017-01-02"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"date_to is invalid date"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"date_to is not defined, but required"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves list of all availability rooms.
+date_from, date_to is required fields.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://app.thebookingfactory.com/api/public/v1/availability</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>date_from</td>
+<td>true</td>
+<td>Date from, should be a valid date in ISO 8601 YYYY-MM-DD format</td>
+</tr>
+<tr>
+<td>date_to</td>
+<td>true</td>
+<td>Date to, should be a valid date in ISO 8601 YYYY-MM-DD format</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>false</td>
+<td>comma separated list of required fields (default is: available, min_stay, closed_arrival, closed_departure)</td>
+</tr>
+</tbody></table>
+
+<h3 id="response">Response</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>Show current request status, if all is ok then TRUE, if request has any errors then FALSE</td>
+</tr>
+<tr>
+<td>errors</td>
+<td>Array of error descriptions. Displayed only if success == false</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Array of availability for Room Type</td>
+</tr>
+</tbody></table>
+
+<h4 id="data-object-description">Data object description</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>date_from</td>
+<td>Date from</td>
+</tr>
+<tr>
+<td>date_to</td>
+<td>Date to</td>
+</tr>
+<tr>
+<td>availability</td>
+<td>Array of Room Type</td>
+</tr>
+</tbody></table>
+
+<h4 id="availability-object-description">Availability object description</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>min_stay</td>
+<td>Min stay</td>
+</tr>
+<tr>
+<td>available</td>
+<td>Availability</td>
+</tr>
+<tr>
+<td>closed_arrival</td>
+<td>Closed Arrival</td>
+</tr>
+<tr>
+<td>closed_departure</td>
+<td>Closed departure</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-rates">Get Rates</h2>
+<pre class="highlight javascript"><code><span class="nx">fetch</span><span class="p">(</span>
+    <span class="nx">API_ENDPOINT</span> <span class="o">+</span> <span class="s1">'rates?date_from=2017-03-01&amp;date_to=2017-03-02'</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="na">method</span><span class="p">:</span>  <span class="s1">'GET'</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="s1">'Token'</span><span class="p">:</span> <span class="nx">API_KEY</span> <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">raw_response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">raw_response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"date_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-01"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"date_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"40"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-03-01"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2017-03-02"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55.0"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"A"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-03-01"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2017-03-02"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65.0"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"STDB"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-03-01"</span><span class="p">:</span><span class="w"> </span><span class="s2">"76.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2017-03-02"</span><span class="p">:</span><span class="w"> </span><span class="s2">"76.0"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"EXDB"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-03-01"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2017-03-02"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86.0"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"B"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-03-01"</span><span class="p">:</span><span class="w"> </span><span class="s2">"75.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2017-03-02"</span><span class="p">:</span><span class="w"> </span><span class="s2">"75.0"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"ext1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-03-01"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2017-03-02"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65.0"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"S2FU"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-03-01"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2017-03-02"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90.0"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"D"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-03-01"</span><span class="p">:</span><span class="w"> </span><span class="s2">"75.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2017-03-02"</span><span class="p">:</span><span class="w"> </span><span class="s2">"75.0"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"ETTW"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-03-01"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2017-03-02"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90.0"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"CSDB"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-03-01"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2017-03-02"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55.0"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"SERV"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-03-01"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2017-03-02"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.0"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves list of all rates.
+date_from, date_to is required fields.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://app.thebookingfactory.com/api/public/v1/rates</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>date_from</td>
+<td>true</td>
+<td>Date from, should be a valid date in ISO 8601 YYYY-MM-DD format</td>
+</tr>
+<tr>
+<td>date_to</td>
+<td>true</td>
+<td>Date to, should be a valid date in ISO 8601 YYYY-MM-DD format</td>
+</tr>
+<tr>
+<td>rooms</td>
+<td>false</td>
+<td>comma separated list of short_codes for required rooms</td>
+</tr>
+<tr>
+<td>rate_categories</td>
+<td>false</td>
+<td>comma separated list of short_codes for required rate_categories</td>
+</tr>
+<tr>
+<td>rates</td>
+<td>false</td>
+<td>comma separated list of short_codes for required rates</td>
+</tr>
+</tbody></table>
+
+<h3 id="response">Response</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>Show current request status, if all is ok then TRUE, if request has any errors then FALSE</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Array of rates</td>
+</tr>
+</tbody></table>
+
+<h4 id="data-object-description">Data object description</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>rates</td>
+<td>Array of real rates on the selected date</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-inventory-rates">Get Inventory Rates</h2>
+<pre class="highlight javascript"><code><span class="nx">fetch</span><span class="p">(</span>
+    <span class="nx">API_ENDPOINT</span> <span class="o">+</span> <span class="s1">'inventory/rates'</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="na">method</span><span class="p">:</span>  <span class="s1">'GET'</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="s1">'Token'</span><span class="p">:</span> <span class="nx">API_KEY</span> <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">raw_response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">raw_response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"rates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"room_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STDB"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard Double Room (Single Occupancy)"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate_category_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STDB"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"room_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STDB"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard Double Room"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate_category_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXDB"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"room_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXDB"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Double Room"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate_category_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"room_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXDB"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Double Room (Single Occupancy)"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate_category_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ext1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"room_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ext1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"External Double"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate_category_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"room_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ext1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"External Double (Single Occupancy)"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate_category_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"S2FU"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"room_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"S2FU"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Twin/Double"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate_category_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"room_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETTW"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Twin/Double (Single Occupancy)"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate_category_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETTW"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"room_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETTW"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Twin/Double"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate_category_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CSDB"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"room_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CSDB"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cosy Double For One"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate_category_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SERV"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"room_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SERV"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Serviced Apartment"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate_category_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"rate_categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Breakfast Rate"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"max_occupancy"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"cancellation_policy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No deposit is required. Remaining balance to be paid on Arrival. We have the right to pre-authorise your card prior to arrival. Free cancellation up 24 Hours before arrival. In case of no-show or late cancellation the first night will be charged."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mandatory_extras"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Breakfast Included"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sell_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"per_person_per_night"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Single Occupancy"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"max_occupancy"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"cancellation_policy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No deposit is required. Remaining balance to be paid on Arrival. We have the right to pre-authorise your card prior to arrival. Free cancellation up 24 Hours before arrival. In case of no-show or late cancellation the first night will be charged."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mandatory_extras"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Authorization Token is invalid"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves list of all invenory rates.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://app.thebookingfactory.com/api/public/v1/inventory/rates</code></p>
+
+<h3 id="response">Response</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>Show current request status, if all is ok then TRUE, if request has any errors then FALSE</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Array of rates</td>
+</tr>
+</tbody></table>
+
+<h4 id="rates-object-description">Rates object description</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>short_code</td>
+<td>Unique code for rate</td>
+</tr>
+<tr>
+<td>room_code</td>
+<td>Unique room code</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Name of rate</td>
+</tr>
+<tr>
+<td>rate_category_code</td>
+<td>Unique code for category rate</td>
+</tr>
+</tbody></table>
+
+<h4 id="rate-categories-object-description">Rate Categories object description</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>short_code</td>
+<td>Unique code for category rate</td>
+</tr>
+<tr>
+<td>title</td>
+<td>Name of category rate</td>
+</tr>
+<tr>
+<td>max_occupancy</td>
+<td>Max occupancy</td>
+</tr>
+<tr>
+<td>cancellation_policy</td>
+<td>Cancellation policy</td>
+</tr>
+<tr>
+<td>mandatory_extras</td>
+<td>Array of mandatory extras</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-inventory-rooms">Get Inventory Rooms</h2>
+<pre class="highlight javascript"><code><span class="nx">fetch</span><span class="p">(</span>
+    <span class="nx">API_ENDPOINT</span> <span class="o">+</span> <span class="s1">'inventory/rooms'</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="na">method</span><span class="p">:</span>  <span class="s1">'GET'</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="s1">'Token'</span><span class="p">:</span> <span class="nx">API_KEY</span> <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">raw_response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">raw_response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"rooms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STDB"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard Double Room"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"occupancy"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"adult"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"children"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_availability"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"online_availability"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/033/original/IMG_8219.JPG?1476783545"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/039/original/IMG_8235.JPG?1476783586"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/047/original/IMG_8233.JPG?1476783632"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXDB"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Double Room"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"occupancy"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"adult"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"children"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_availability"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"online_availability"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/034/original/IMG_8220.JPG?1476783555"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/035/original/IMG_8221.JPG?1476783561"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/036/original/IMG_8222.JPG?1476783567"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/037/original/IMG_8223.JPG?1476783573"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/045/original/IMG_8261.JPG?1476783627"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ext1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"External Double"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"occupancy"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"adult"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"children"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_availability"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"online_availability"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/103/original/IMG_0049.JPG?1476784388"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/104/original/IMG_0047.JPG?1476784409"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETTW"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Twin/Double"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"occupancy"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"adult"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"children"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_availability"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"online_availability"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/042/original/IMG_8242.JPG?1476783606"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/043/original/IMG_8243.JPG?1476783613"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/044/original/IMG_8241.JPG?1476783621"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CSDB"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cosy Double For One"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"occupancy"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"adult"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"children"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_availability"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"online_availability"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/038/original/IMG_8228.JPG?1476783579"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/040/original/IMG_8229.JPG?1476783591"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/041/original/IMG_8227.JPG?1476783599"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SERV"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Serviced Apartment"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"occupancy"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"adult"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"children"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_availability"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"online_availability"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"virtual_rooms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"short_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"S2FU"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Family Room"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"occupancy"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"adult"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"children"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_availability"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"online_availability"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"original_room"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETTW"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Authorization Token is invalid"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves list of all Inventory rooms.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://app.thebookingfactory.com/api/public/v1/inventory/rooms</code></p>
+
+<h3 id="response">Response</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>Show current request status, if all is ok then TRUE, if request has any errors then FALSE</td>
+</tr>
+<tr>
+<td>errors</td>
+<td>Array of error descriptions. Displayed only if success == false</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Array of inventory rooms</td>
+</tr>
+</tbody></table>
+
+<h4 id="data-object-description">Data object description</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>rooms</td>
+<td>Array of real inventory</td>
+</tr>
+<tr>
+<td>virtual_rooms</td>
+<td>Array of virtual rooms mapped to real inventory. This rooms use availability settings from parent real room.</td>
+</tr>
+</tbody></table>
+
+<h4 id="rooms-object-description">Rooms object description</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>short_code</td>
+<td>Unique code at system</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Room name</td>
+</tr>
+<tr>
+<td>occupancy</td>
+<td>Max available occupancy</td>
+</tr>
+<tr>
+<td>adults</td>
+<td>Max available adults occupancy</td>
+</tr>
+<tr>
+<td>children</td>
+<td>Max available children occupancy</td>
+</tr>
+<tr>
+<td>default_availability</td>
+<td>Count of numbers associated with selected room</td>
+</tr>
+<tr>
+<td>online_availability</td>
+<td>Count of numbers associated with selected room to sell online</td>
+</tr>
+<tr>
+<td>photos</td>
+<td>Array of images inventory rooms</td>
+</tr>
+</tbody></table>
+
+<h4 id="virtual-rooms-object-description">Virtual Rooms object description</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>short_code</td>
+<td>Unique code at system</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Room name</td>
+</tr>
+<tr>
+<td>occupancy</td>
+<td>Max available occupancy</td>
+</tr>
+<tr>
+<td>adults</td>
+<td>Max available adults occupancy</td>
+</tr>
+<tr>
+<td>children</td>
+<td>Max available children occupancy</td>
+</tr>
+<tr>
+<td>default_availability</td>
+<td>Count of numbers associated with selected room</td>
+</tr>
+<tr>
+<td>online_availability</td>
+<td>Count of numbers associated with selected room to sell online</td>
+</tr>
+<tr>
+<td>original_room</td>
+<td>Parent room short_code for virtual room</td>
+</tr>
+<tr>
+<td>photos</td>
+<td>Array of images inventory rooms</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
