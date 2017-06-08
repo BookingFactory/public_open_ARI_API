@@ -12,7 +12,7 @@ search: true
 
 # Introduction
 
-Welcome to the Booking Factory Public Open ARO API! You can use our API to write your own booking widgets.
+Welcome to the Booking Factory Public Open ARI API! You can use our API to write your own booking widgets.
 
 Our API based at simple HTTP requests, as result you can use any language! You can view code examples in the dark area to the right, we provide examples at JavaScript, but you can use CURL or other libraries.
 
