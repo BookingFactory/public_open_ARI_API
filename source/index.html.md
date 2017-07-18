@@ -20,10 +20,10 @@ This example API documentation page was created with [Slate](https://github.com/
 
 # API Endpoint
 ```javascript
-const API_ENDPOINT = 'https://app.thebookingfactory.com/api/public/v1/';
+const API_ENDPOINT = 'https://app.thebookingfactory.com/api/public/ari/v1/';
 ```
 
-Our API endpoint located at https://app.thebookingfactory.com/api/public/v1/
+Our API endpoint located at https://app.thebookingfactory.com/api/public/ari/v1/
 
 # Authentication
 ```javascript
@@ -182,7 +182,7 @@ date_from, date_to is required fields.
 
 ### HTTP Request
 
-`GET https://app.thebookingfactory.com/api/public/v1/availability`
+`GET https://app.thebookingfactory.com/api/public/ari/v1/availability`
 
 ### Query Parameters
 
@@ -296,7 +296,7 @@ date_from, date_to is required fields.
 
 ### HTTP Request
 
-`GET https://app.thebookingfactory.com/api/public/v1/rates`
+`GET https://app.thebookingfactory.com/api/public/ari/v1/rates`
 
 ### Query Parameters
 
@@ -450,7 +450,7 @@ This endpoint retrieves list of all invenory rates.
 
 ### HTTP Request
 
-`GET https://app.thebookingfactory.com/api/public/v1/inventory/rates`
+`GET https://app.thebookingfactory.com/api/public/ari/v1/inventory/rates`
 
 ### Response
 Parameter | Description
@@ -612,7 +612,7 @@ This endpoint retrieves list of all Inventory rooms.
 
 ### HTTP Request
 
-`GET https://app.thebookingfactory.com/api/public/v1/inventory/rooms`
+`GET https://app.thebookingfactory.com/api/public/ari/v1/inventory/rooms`
 
 ### Response
 Parameter | Description
