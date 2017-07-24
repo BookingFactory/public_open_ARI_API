@@ -191,6 +191,7 @@ Parameter | Required | Description
 date_from | true | Date from, should be a valid date in ISO 8601 YYYY-MM-DD format
 date_to | true | Date to, should be a valid date in ISO 8601 YYYY-MM-DD format
 fields | false | comma separated list of required fields (default is: available, min_stay, closed_arrival, closed_departure)
+room_types | false | comma separated short_codes list of required room types
 
 ### Response
 Parameter | Description
