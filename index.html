@@ -537,6 +537,151 @@ date_from, date_to is required fields.</p>
 </tr>
 </tbody></table>
 
+<h2 id="get-rates-with-restrictions">Get Rates With Restrictions</h2>
+<pre class="highlight javascript"><code><span class="nx">fetch</span><span class="p">(</span>
+    <span class="nx">API_ENDPOINT</span> <span class="o">+</span> <span class="s1">'rates_with_restrictions?date_from=2017-03-01&amp;date_to=2017-03-02'</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="na">method</span><span class="p">:</span>  <span class="s1">'GET'</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="s1">'Token'</span><span class="p">:</span> <span class="nx">API_KEY</span> <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">raw_response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">raw_response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"date_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-01"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"date_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"40"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-03-01"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"min_stay_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55.0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"stop_sell"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"2017-03-02"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"min_stay_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55.0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"stop_sell"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"A"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017-03-01"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"min_stay_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65.0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"stop_sell"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"2017-03-02"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed_departure"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"min_stay"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"min_stay_arrival"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65.0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"stop_sell"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves list of all rates with all restrictions per rate.
+date_from, date_to is required fields.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://app.thebookingfactory.com/api/public/ari/v1/rates</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>date_from</td>
+<td>true</td>
+<td>Date from, should be a valid date in ISO 8601 YYYY-MM-DD format</td>
+</tr>
+<tr>
+<td>date_to</td>
+<td>true</td>
+<td>Date to, should be a valid date in ISO 8601 YYYY-MM-DD format</td>
+</tr>
+<tr>
+<td>rooms</td>
+<td>false</td>
+<td>comma separated list of short_codes for required rooms</td>
+</tr>
+<tr>
+<td>rate_categories</td>
+<td>false</td>
+<td>comma separated list of short_codes for required rate_categories</td>
+</tr>
+<tr>
+<td>rates</td>
+<td>false</td>
+<td>comma separated list of short_codes for required rates</td>
+</tr>
+</tbody></table>
+
+<h3 id="response">Response</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>Show current request status, if all is ok then TRUE, if request has any errors then FALSE</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Array of rates</td>
+</tr>
+</tbody></table>
+
+<h4 id="data-object-description">Data object description</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>rates</td>
+<td>Array of real rates and restrictions on the selected date</td>
+</tr>
+</tbody></table>
+
 <h2 id="get-inventory-rates">Get Inventory Rates</h2>
 <pre class="highlight javascript"><code><span class="nx">fetch</span><span class="p">(</span>
     <span class="nx">API_ENDPOINT</span> <span class="o">+</span> <span class="s1">'inventory/rates'</span><span class="p">,</span>
