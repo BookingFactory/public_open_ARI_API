@@ -398,7 +398,7 @@ date_from, date_to is required fields.
 
 ### HTTP Request
 
-`GET https://app.thebookingfactory.com/api/public/ari/v1/rates`
+`GET https://app.thebookingfactory.com/api/public/ari/v1/rates_with_restrictions`
 
 ### Query Parameters
 
