@@ -321,6 +321,106 @@ Parameter | Description
 rates | Array of real rates on the selected date
 
 
+## Get Rates With Restrictions
+
+```javascript
+fetch(
+    API_ENDPOINT + 'rates_with_restrictions?date_from=2017-03-01&date_to=2017-03-02',
+    {
+      method:  'GET',
+      headers: { 'Token': API_KEY }
+    }
+  )
+  .then(function(raw_response) {
+    return raw_response.json();
+  })
+  .then(function(response) {
+    console.log(response);
+  })
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": true,
+  "data": {
+    "date_from": "2017-03-01",
+    "date_to": "2017-03-02",
+    "rates": {
+      "40": {
+        "2017-03-01": {
+          "available": 4,
+          "closed_arrival": 0,
+          "closed_departure": 0,
+          "min_stay": 1,
+          "min_stay_arrival": 1,
+          "price": "55.0",
+          "stop_sell": 0
+        },
+        "2017-03-02": {
+          "available": 4,
+          "closed_arrival": 0,
+          "closed_departure": 0,
+          "min_stay": 1,
+          "min_stay_arrival": 1,
+          "price": "55.0",
+          "stop_sell": 0
+        }
+      },
+      "A": {
+        "2017-03-01": {
+          "available": 4,
+          "closed_arrival": 0,
+          "closed_departure": 0,
+          "min_stay": 1,
+          "min_stay_arrival": 1,
+          "price": "65.0",
+          "stop_sell": 0
+        },
+        "2017-03-02": {
+          "available": 4,
+          "closed_arrival": 0,
+          "closed_departure": 0,
+          "min_stay": 1,
+          "min_stay_arrival": 1,
+          "price": "65.0",
+          "stop_sell": 0
+        }
+      }
+    }
+  }
+}
+```
+
+This endpoint retrieves list of all rates with all restrictions per rate.
+date_from, date_to is required fields.
+
+### HTTP Request
+
+`GET https://app.thebookingfactory.com/api/public/ari/v1/rates`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+date_from | true | Date from, should be a valid date in ISO 8601 YYYY-MM-DD format
+date_to | true | Date to, should be a valid date in ISO 8601 YYYY-MM-DD format
+rooms | false | comma separated list of short_codes for required rooms
+rate_categories | false | comma separated list of short_codes for required rate_categories
+rates | false | comma separated list of short_codes for required rates
+
+### Response
+Parameter | Description
+--------- | -----------
+status | Show current request status, if all is ok then TRUE, if request has any errors then FALSE
+data | Array of rates
+
+#### Data object description
+Parameter | Description
+--------- | -----------
+rates | Array of real rates and restrictions on the selected date
+
 ## Get Inventory Rates
 
 ```javascript
