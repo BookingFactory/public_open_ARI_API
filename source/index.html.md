@@ -614,7 +614,8 @@ fetch(
           "https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/033/original/IMG_8219.JPG?1476783545",
           "https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/039/original/IMG_8235.JPG?1476783586",
           "https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/047/original/IMG_8233.JPG?1476783632"
-        ]
+        ],
+        "description": ""
       },
       {
         "short_code": "EXDB",
@@ -630,7 +631,8 @@ fetch(
           "https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/036/original/IMG_8222.JPG?1476783567",
           "https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/037/original/IMG_8223.JPG?1476783573",
           "https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/045/original/IMG_8261.JPG?1476783627"
-        ]
+        ],
+        "description": ""
       },
       {
         "short_code": "ext1",
@@ -643,7 +645,8 @@ fetch(
         "photos": [
           "https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/103/original/IMG_0049.JPG?1476784388",
           "https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/104/original/IMG_0047.JPG?1476784409"
-        ]
+        ],
+        "description": ""
       },
       {
         "short_code": "ETTW",
@@ -657,7 +660,8 @@ fetch(
           "https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/042/original/IMG_8242.JPG?1476783606",
           "https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/043/original/IMG_8243.JPG?1476783613",
           "https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/044/original/IMG_8241.JPG?1476783621"
-        ]
+        ],
+        "description": ""
       },
       {
         "short_code": "CSDB",
@@ -671,7 +675,8 @@ fetch(
           "https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/038/original/IMG_8228.JPG?1476783579",
           "https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/040/original/IMG_8229.JPG?1476783591",
           "https://s3.amazonaws.com/buuqit-dev/photos/photos/000/000/041/original/IMG_8227.JPG?1476783599"
-        ]
+        ],
+        "description": ""
       },
       {
         "short_code": "SERV",
@@ -681,7 +686,8 @@ fetch(
         "children": 0,
         "default_availability": 1,
         "online_availability": 0,
-        "photos": []
+        "photos": [],
+        "description": ""
       }
     ],
     "virtual_rooms": [
@@ -694,7 +700,8 @@ fetch(
         "default_availability": 2,
         "online_availability": 2,
         "original_room": "ETTW",
-        "photos": []
+        "photos": [],
+        "description": ""
       }
     ]
   }
@@ -739,6 +746,7 @@ children | Max available children occupancy
 default_availability | Count of numbers associated with selected room
 online_availability | Count of numbers associated with selected room to sell online
 photos | Array of images inventory rooms
+description | Room description
 
 #### Virtual Rooms object description
 Parameter | Description
@@ -752,3 +760,4 @@ default_availability | Count of numbers associated with selected room
 online_availability | Count of numbers associated with selected room to sell online
 original_room | Parent room short_code for virtual room
 photos | Array of images inventory rooms
+description | Room description
